@@ -98,3 +98,61 @@
     right: -100%;
   }
 }
+
+/* Cart item layout */
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;              /* spacing between image, info, controls */
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Quantity section */
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;               /* space between - qty + */
+  margin-left: auto;      /* pushes controls to the right */
+}
+
+/* Quantity buttons */
+.quantity-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #ddd;
+  background: #f8f8f8;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.quantity-btn:hover {
+  background: #ececec;
+}
+
+/* Quantity number */
+.quantity-display {
+  min-width: 22px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* Remove button spacing */
+.remove-btn {
+  margin-left: 8px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #777;
+}
+
+.remove-btn:hover {
+  color: #e53935;
+}
