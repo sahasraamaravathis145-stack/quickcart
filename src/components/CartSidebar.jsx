@@ -1,7 +1,15 @@
 import React from 'react';
+import { useCart } from '../context/CartContext';
 import '../styles/CartSidebar.css';
 
-function CartSidebar({ isOpen, onClose, cart, onUpdateQuantity, onRemoveItem }) {
+function CartSidebar() {
+  const {
+    cart,
+    isCartOpen,
+    toggleCart,
+    updateQuantity,
+    removeFromCart
+  } = useCart();
 
   // 💰 Calculate total price
   const calculateTotal = () => {
@@ -12,12 +20,12 @@ function CartSidebar({ isOpen, onClose, cart, onUpdateQuantity, onRemoveItem }) 
   };
 
   return (
-    <div className={`cart-sidebar ${isOpen ? 'open' : ''}`}>
+    <div className={`cart-sidebar ${isCartOpen ? 'open' : ''}`}>
 
       {/* Header */}
       <div className="cart-header">
         <h2>Your Cart</h2>
-        <button onClick={onClose} className="close-btn">✕</button>
+        <button onClick={toggleCart} className="close-btn">✕</button>
       </div>
 
       {/* Cart Items */}
@@ -28,14 +36,12 @@ function CartSidebar({ isOpen, onClose, cart, onUpdateQuantity, onRemoveItem }) 
           cart.map(item => (
             <div key={item.id} className="cart-item">
 
-              {/* Product Image */}
-              <img 
-                src={item.image} 
-                alt={item.name} 
+              <img
+                src={item.image}
+                alt={item.name}
                 className="cart-item-image"
               />
 
-              {/* Product Info */}
               <div className="cart-item-details">
                 <h4 className="cart-item-name">{item.name}</h4>
                 <p className="cart-item-price">
@@ -46,11 +52,10 @@ function CartSidebar({ isOpen, onClose, cart, onUpdateQuantity, onRemoveItem }) 
                 </p>
               </div>
 
-              {/* Quantity Controls */}
               <div className="cart-item-quantity">
                 <button
                   className="quantity-btn"
-                  onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
                 >
                   −
                 </button>
@@ -61,16 +66,15 @@ function CartSidebar({ isOpen, onClose, cart, onUpdateQuantity, onRemoveItem }) 
 
                 <button
                   className="quantity-btn"
-                  onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
                 >
                   +
                 </button>
               </div>
 
-              {/* Remove Button */}
               <button
                 className="remove-btn"
-                onClick={() => onRemoveItem(item.id)}
+                onClick={() => removeFromCart(item.id)}
                 aria-label="Remove item"
               >
                 ✕

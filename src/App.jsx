@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import Header from './components/header';
-import ProductList from './components/ProductList';
+import HomePage from './components/HomePage';
+import CategoryPage from './components/CategoryPage';
+import CartPage from './components/CartPage';
 import CartSidebar from './components/CartSidebar';
+
 import { products } from './data/products';
 import './styles/App.css';
 
@@ -11,6 +16,9 @@ function App() {
 
   // 📂 Cart visibility state
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  // 🔍 Search state
+  const [searchTerm, setSearchTerm] = useState('');
 
   // ➕ Add to cart
   const addToCart = (product) => {
@@ -60,27 +68,67 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <Header
-        cartItemCount={getTotalItems()}
-        onCartClick={toggleCart}
-      />
+    <BrowserRouter>
+      <div className="app">
 
-      <main className="main-content">
-        <ProductList
-          products={products}
-          onAddToCart={addToCart}
+        <Header
+          cartItemCount={getTotalItems()}
+          onCartClick={toggleCart}
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
         />
-      </main>
 
-      <CartSidebar
-        isOpen={isCartOpen}
-        onClose={toggleCart}
-        cart={cart}
-        onUpdateQuantity={updateQuantity}
-        onRemoveItem={removeFromCart}
-      />
-    </div>
+        <main className="main-content">
+          <Routes>
+
+            {/* 🏠 Home Page */}
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  products={products}
+                  onAddToCart={addToCart}
+                  searchTerm={searchTerm}
+                />
+              }
+            />
+
+            {/* 📂 Category Page */}
+            <Route
+              path="/category/:category"
+              element={
+                <CategoryPage
+                  products={products}
+                  onAddToCart={addToCart}
+                />
+              }
+            />
+
+            {/* 🛒 Cart Page */}
+            <Route
+              path="/cart"
+              element={
+                <CartPage
+                  cart={cart}
+                  onUpdateQuantity={updateQuantity}
+                  onRemoveItem={removeFromCart}
+                />
+              }
+            />
+
+          </Routes>
+        </main>
+
+        <CartSidebar
+          isOpen={isCartOpen}
+          onClose={toggleCart}
+          cart={cart}
+          onUpdateQuantity={updateQuantity}
+          onRemoveItem={removeFromCart}
+        />
+
+      </div>
+    </BrowserRouter>
   );
 }
 
