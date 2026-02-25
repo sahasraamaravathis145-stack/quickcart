@@ -32,3 +32,58 @@
     font-size: 1rem;
   }
 }
+
+.header-content {
+  /* TODO: Use flexbox to position title and cart icon */
+  /* display: flex; justify-content: space-between; align-items: center; */
+    display: flex;
+        justify-content: space-between;
+        align-items: center;
+}
+
+.cart-icon-btn {
+  /* TODO: Style the cart button */
+  /* Position relative for badge positioning */
+  /* Large font size for emoji */
+  /* Remove default button styles */
+  /* Add hover effect */
+    position: relative;
+        font-size: 1.8rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+}
+.cart-icon-btn:hover {
+    transform: scale(1.1);
+}
+
+.cart-badge {
+  /* TODO: Style the badge */
+  /* Position absolute - top right of button */
+  /* Small circle with number */
+  /* Bright color background */
+  /* Example:
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff4757;
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  */
+    position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #ff4757;
+        color: white;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+}

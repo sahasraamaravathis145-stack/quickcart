@@ -1,0 +1,100 @@
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px; /* Hidden off-screen */
+  width: 400px;
+  height: 100vh;
+  background: white;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-sidebar.open {
+  right: 0; /* Slide in */
+}
+
+.cart-header {
+  /* TODO: Style the header */
+  /* padding, background, flex layout */
+  /* Position close button on the right */
+  padding: 20px;
+    background: #f8f8f8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+  /* TODO: Style close button */
+  /* Remove default button styles */
+  /* Make it large and clickable */
+    background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+}
+
+.cart-items {
+  /* TODO: Make this scrollable */
+  /* flex-grow: 1 to take available space */
+  /* overflow-y: auto for scrolling */
+  /* padding */
+    flex-grow: 1;
+        overflow-y: auto;
+        padding: 20px;
+}
+
+.cart-item {
+  /* TODO: Layout each cart item */
+  /* Use flexbox or grid */
+  /* Add border between items */
+  /* padding */
+    display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+}
+
+.cart-item-image {
+  /* TODO: Small thumbnail size */
+  /* width: 60px; height: 60px; */
+  /* object-fit: cover; border-radius */
+    width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-right: 15px;
+}
+
+.quantity-controls {
+  /* TODO: Style quantity buttons */
+  /* Display them in a row */
+    /* Add spacing between buttons */
+        display: flex;
+            align-items: center;
+            margin-left: auto;
+}
+
+.cart-footer {
+  /* TODO: Style footer */
+  /* Stick to bottom */
+  /* Show total prominently */
+    /* Add checkout button */
+        padding: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+}
+
+/* TODO: Add mobile responsive styles */
+@media (max-width: 480px) {
+  .cart-sidebar {
+    width: 100%; /* Full width on mobile */
+    right: -100%;
+  }
+}
